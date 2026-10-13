@@ -5,8 +5,14 @@ import time
 import webbrowser
 from pathlib import Path
 from urllib.request import urlopen
+from automation import Automation
 
 root=Path(__file__).resolve().parents[1]
+try:
+    if Automation().start_catch_up():
+        print('Automatic collection is running in the background when due.')
+except Exception as exc:
+    print('Automatic collection could not start. Check the Dashboard:',type(exc).__name__)
 port=8501
 with socket.socket() as check:
     if check.connect_ex(('127.0.0.1',port))==0:

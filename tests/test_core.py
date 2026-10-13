@@ -162,3 +162,11 @@ def test_mismatched_title_rejected():
         def get(self,*args): return b'<h1>TEST_DATA error page forbidden</h1>',{'Content-Type':'text/html'},'https://example.com/article'
     with pytest.raises(CollectionError):
         verify_document({'title':'AML internal control','source_url':'https://example.com/article'}, {'homepage':'https://example.com/'},Client())
+
+def test_automatic_pending_digest(db,doc,tmp_path):
+    register(dict(doc,components={},score_evidence={}),db)
+    content=daily(path=db,data_dir=tmp_path)
+    assert EMPTY in content
+    assert '신규 수집 자료 — 중요도 검토 대기' in content
+    assert 'TEST_DATA AML' in content
+    assert not query('SELECT * FROM report_documents',path=db)

@@ -2,7 +2,9 @@
 
 **처음 한 번:** Python 3.10 이상(권장 3.12)을 python.org에서 설치하며 **Add Python to PATH**를 선택한 뒤 `setup.bat`를 더블클릭합니다. 인터넷 연결이 필요합니다.
 
-**평소 사용:** `run_app.bat` 더블클릭 → 서버 시작 후 기본 브라우저에서 Global Legal Research Dashboard가 열립니다.
+**자동 수집:** `setup.bat`가 설치 완료 후 Windows 예약을 등록합니다. 기존 설치 사용자는 `enable_auto.bat`를 **한 번** 실행합니다. 등록 확인 후 평일 오전 7시 수집 / 금요일 오후 6시 Weekly가 앱을 닫아도 실행됩니다. PC가 켜져 있고 Windows에 로그인되어 있어야 합니다.
+
+**조회할 때:** `run_app.bat` 더블클릭 → 서버 시작 후 기본 브라우저에서 Global Legal Research Dashboard가 열립니다. 매일 수집을 위해 앱을 열 필요는 없습니다.
 
 **수동 Daily:** `run_daily.bat` — 공개 피드를 수집하고 DB로 Daily를 만듭니다.
 
@@ -15,7 +17,7 @@
 1. Dashboard에서 수집상태와 오류를 확인합니다. 첫 화면이 비어 있어도 오류가 아닙니다.
 2. Research Database의 “원문 확인 후 자료 등록”에서 자료를 입력할 수 있습니다. 추측하지 말고 미확인 날짜는 비웁니다.
 3. 상세보기에서 “원문 검토 · 점수 · 법적 분석 수정”을 엽니다. A~E 점수와 각각의 근거를 입력하고 법적 평가를 작성합니다. 자동 수집자료는 평가 대기이며 Priority D로 시작합니다.
-4. Daily/Weekly 화면에서 DB로 보고서를 생성합니다. 원문 검증·발행일·점수 기준을 충족하지 않으면 빈 보고서가 정상입니다.
+4. Daily/Weekly 보고서는 예약 작업이 생성합니다. Daily에는 중요도 선정자료와 별도로 신규 수집·검토 대기 목록도 표시됩니다. 중요도 기준을 충족하지 않는 자료를 핵심 법률 변화로 선정하지 않습니다. 필요할 때만 화면의 수동 갱신 버튼을 사용하세요.
 5. 상단 통합검색은 공백으로 나눈 단어를 모두 포함하는 자료를 찾습니다. 자료 카드 상세보기, 원문 링크, PDF 다운로드를 사용하세요.
 6. 연구주제는 검증된 실제 자료 2건 이상을 선택하고 Research Gap을 직접 작성해 저장합니다.
 
@@ -27,13 +29,14 @@
 legal/
   AGENTS.md, README.md, requirements.txt, requirements.lock.txt
   setup.bat, run_app.bat, run_daily.bat, run_weekly.bat, backup.bat
+  enable_auto.bat, disable_auto.bat
   app/Home.py                 12개 화면, 통합검색, 등록/검토 UI
   config/                     연구범위, 출처, 분류, 점수, 보고서 정책
   database/schema.sql         초기화/마이그레이션 구조
   database/research.db         SQLite 장기기억 (첫 실행 시 생성)
   research/db.py, services.py, pipeline.py, pdf.py
   research/collectors/, classifiers/, deduplication/, scoring/, reporting/
-  scripts/manage.py, launch_app.py
+  scripts/manage.py, launch_app.py, automation.py
   papers/{Korea,US,UK,Japan,Global}/
   reports/{daily,weekly,topic_reviews}/
   automation/DAILY.md, WEEKLY.md
@@ -60,7 +63,20 @@ PDF는 상세 화면의 “공개 PDF 보관” 또는 CLI `--pdf`로 합법적�
 
 ## 자동화
 
-이 작업은 Codex 자동화를 실제 등록하지 않습니다. `automation/DAILY.md`와 `WEEKLY.md`의 Name, Schedule, Working Directory, Prompt를 Codex 자동화 UI에 입력하세요. Daily 월~금 07:00 / Weekly 금요일 18:00, **Asia/Seoul**. UI가 자동화를 지원하지 않으면 같은 문서의 Windows 작업 스케줄러 설정을 사용합니다. CLI 자동화는 평가 점수/법적 분석을 자동 작성하지 않습니다.
+**매일 직접 실행할 필요가 없습니다.** `setup.bat`가 설치 후 사용자 계정의 Windows 작업 스케줄러에 Daily, Weekly, 로그인 시 보완 작업을 자동 등록합니다. 기존 설치는 `enable_auto.bat` 한 번으로 등록합니다. 등록 후 초기 수집 시작을 요청합니다. Dashboard의 “자동 수집”에서 실제 예약 존재·활성화와 최근 실행 결과를 확인하세요. 설치 성공과 수집 성공은 별개입니다.
+
+- Daily: 월~금 **07:00 Asia/Seoul**, 공개자료 수집·중복 제거·SQLite 저장·가능한 PDF 보관·보고서 생성.
+- Weekly: 금요일 **18:00 Asia/Seoul**, 검토된 A/B 자료로 구조화 초안 생성.
+- 로그인/앱 시작: 지난 영업일의 놓친 수집과 지난 금요일 Weekly를 필요한 경우 보완. 늦게 발견한 자료는 실제 발견 시점으로 저장하며 과거 날짜의 연구를 수행했다고 기록하지 않습니다.
+- 앱/브라우저를 닫아도 예약 실행. **PC가 켜져 있고 Windows에 로그인되어 있어야 합니다.** 화면 잠금은 가능하지만 로그아웃·종료 상태에서는 실행되지 않습니다. 절전 해제 타이머는 Windows 전원 정책에 따르며 보장하지 않습니다. PC가 꺼져 있었으면 다음 로그인/앱 실행 때 보완합니다. PC가 꺼져도 실행되려면 별도의 상시 서버가 필요합니다.
+- 비밀번호를 요구하거나 저장하지 않습니다. 현재 사용자의 최소 권한으로 등록합니다. 회사 PC의 정책상 예약 등록이 금지되면 Dashboard/설치창에 실패를 표시합니다.
+- OS 잠금으로 자동 작업의 동시 실행을 방지하고 이미 완료한 기간은 다시 처리하지 않습니다. 부분/실패 결과는 하루 최대 4회로 제한하여 재시도합니다. `logs/automation.log`, `automation_state.json`, DB 오류 기록을 확인하세요.
+- 폴더를 옮기면 기존 위치에서 `disable_auto.bat`로 예약을 해제하고 새 위치에서 `enable_auto.bat`를 실행하세요. 해제는 이 앱이 등록한 예약만 삭제하고 DB/PDF를 지우지 않습니다.
+- 등록을 반복해도 같은 위치의 예약을 갱신하고 다른 프로그램의 동명 예약을 덮어쓰지 않습니다. 전체 예약 확인에 실패하면 자동 실행이 활성화되었다고 표시하지 않습니다.
+
+자동 수집 대상은 현재 기본 공개 피드 4곳입니다. 법적 중요도/분석과 심층 연구주제 자동 생성은 연결하지 않았습니다. 웹 접근 실패·원문 변동 시 추측 자료를 생성하지 않습니다. Codex AI 자동화는 별도이며 실제 등록하지 않았습니다. AI 자동화 UI 입력용 Prompt는 `automation/DAILY.md`, `WEEKLY.md`에 유지합니다.
+
+Windows 실제 작업 등록은 사용자 PC의 `enable_auto.bat` 실행 후 확인됩니다. 이 개발 환경은 Linux이며 Windows 예약 동작은 mock 테스트 및 Microsoft Task Scheduler XSD 검증으로 확인했습니다.
 
 ## 개발·Linux/클라우드
 

@@ -19,6 +19,9 @@ if errorlevel 1 goto error
 if errorlevel 1 goto error
 ".venv\Scripts\python.exe" scripts\manage.py init
 if errorlevel 1 goto error
+echo Registering automatic collection...
+".venv\Scripts\python.exe" scripts\automation.py install
+if errorlevel 1 echo Automatic scheduling failed. You can retry enable_auto.bat after setup.
 echo Setup complete. Double-click run_app.bat.
 pause
 exit /b 0

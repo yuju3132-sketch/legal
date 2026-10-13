@@ -1,6 +1,8 @@
 # Global Legal Research — Daily
 
-등록 상태: 미등록. 이 파일은 UI 입력 지침입니다.
+Codex AI 자동화: 미등록. 아래 Prompt는 AI 자동화 UI 입력 지침입니다.
+
+Windows 예약: `setup.bat` 또는 `enable_auto.bat`가 Daily/Weekly/로그인 보완 작업을 등록합니다. 이 클라우드에서는 Windows 예약을 실제 등록하지 않았으며 사용자 PC의 Dashboard에서 확인합니다. 매일 배치파일을 수동으로 실행할 필요는 없습니다.
 
 - Name: Global Legal Research — Daily
 - Schedule: 월~금 07:00 Asia/Seoul
@@ -18,3 +20,8 @@ AGENTS.md와 config/topics.md, sources.md, taxonomy.md, scoring.md, reporting.md
 프로그램: legal/.venv/Scripts/python.exe (절대경로)
 인수: scripts/manage.py daily
 시작 위치: legal 폴더 절대경로. UI prompt를 실행하는 Codex 자동화와 달리 이 CLI는 RSS 수집/저장된 분석 기반 보고서만 수행합니다. Windows 시간대를 서울로 설정하고 위 스케줄에 맞춰 등록합니다. 배치파일은 완료 후 pause하므로 작업 스케줄러에는 Python 명령을 직접 사용합니다. PC가 실행 중이어야 합니다.
+
+
+## 간편 Windows 예약
+
+기존 설치는 enable_auto.bat를 한 번 실행하세요. PC가 켜져 있고 로그인된 동안 앱을 닫아도 예약 실행됩니다. 자세한 조건과 해제 방법은 README의 자동화 절을 참고하세요.

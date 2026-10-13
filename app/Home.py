@@ -13,6 +13,7 @@ from research.scoring import score,WEIGHTS
 from research.pdf import archive
 from research.deduplication import canonical_url
 from research.pipeline import log_error
+from scripts.automation import Automation
 
 st.set_page_config(page_title='Global Legal Research',page_icon='⚖',layout='wide')
 initialize()
@@ -156,11 +157,27 @@ def detail():
 if global_text and page not in ('Research Database','Document Detail'):
     st.subheader('통합 검색 결과'); cards(search(global_text))
 elif page=='Dashboard':
+    automatic=Automation(data_dir=DATA).status()
+    with st.container(border=True):
+        st.subheader('자동 수집')
+        if automatic['enabled']:
+            st.success('예약 등록 확인 · 평일 오전 7시 수집 / 금요일 오후 6시 Weekly (한국시간)')
+            st.caption('앱을 닫아도 실행됩니다. PC가 켜져 있고 Windows에 로그인되어 있어야 합니다. 놓친 작업은 로그인하거나 앱을 열 때 보완합니다.')
+        elif automatic.get('supported'):
+            st.warning('자동 수집 예약이 아직 확인되지 않았습니다. 프로젝트 폴더의 enable_auto.bat를 한 번 실행하세요.')
+        else:
+            st.info('이 환경에는 Windows 예약이 등록되어 있지 않습니다. Windows PC에서 enable_auto.bat를 한 번 실행하면 됩니다.')
+        if automatic.get('error'): st.error(automatic['error'])
+        for job,label in [('daily','수집'),('weekly','Weekly')]:
+            state=automatic['state'].get(job,{})
+            labels={'RUNNING':'진행 중','COMPLETED':'정상 완료','PARTIAL':'일부 출처 실패 — 아래 오류 확인','FAILED':'실패 — logs/automation.log 확인'}
+            st.write(f"최근 {label}: "+(labels.get(state.get('status'),'실행 기록 없음'))+(f" · {state.get('finished_at') or state.get('started_at')}" if state else ''))
+        st.caption('자동 수집 범위: BIS·FSB·미국 연준·영국 FCA 공개 피드. 새 자료는 DB에 저장되며, 법적 중요도와 분석은 검토 대기입니다.')
     rows=search(sort='Highest Score'); today=now().date(); week=today.fromordinal(today.toordinal()-today.weekday()).isoformat()
     todayrows=[d for d in rows if d['first_seen'][:10]==today.isoformat()]
     counts=[len(todayrows),sum(d['priority']=='A' for d in rows),sum(d['first_seen'][:10]>=week for d in rows),sum(d['priority'] in ('A','B') for d in rows),len(search(filters={'topic':'AML / KYC','since':today.isoformat()})),len(search(filters={'topic':'Sanctions','since':today.isoformat()}))]
     for col,label,count in zip(st.columns(6),['오늘 신규','Priority A','이번 주 신규','Must Read A/B','AML/KYC 신규','Sanctions 신규'],counts): col.metric(label,count)
-    st.subheader('최근 핵심자료'); cards(rows[:10])
+    st.subheader('최근 수집·등록된 자료'); cards(search(sort='Recently Added')[:10])
     with st.expander('수집 상태 · 출처 · 오류'):
         st.dataframe(pd.DataFrame(query('SELECT * FROM collection_runs ORDER BY id DESC LIMIT 10')),hide_index=True)
         st.dataframe(pd.DataFrame(query('SELECT name,jurisdiction,enabled,verification_status,last_checked FROM sources')),hide_index=True)

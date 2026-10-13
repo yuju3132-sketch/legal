@@ -31,6 +31,10 @@ def daily(day=None,path=None,data_dir=None):
     content+=('최근 수집 상태: '+str(runs[0]) if runs else '수집 실행 기록 없음 (DB 기반 보고서).')+'\n\n전체 출처의 조사 완료를 뜻하지 않습니다. 평가 대기 자료와 접근 실패 출처를 별도로 확인하세요.\n\n'
     content+='선정: 검증된 발행일·원문, 최근 7일, Priority A. 미확인 분석은 표시합니다.\n\n'
     content+='\n\n'.join(entry(d) for d in rows) if rows else EMPTY
+    pending=query("SELECT title,jurisdiction,source_url,summary,verification_status FROM documents WHERE is_test=0 AND importance_score<85 AND substr(first_seen,1,10)=? ORDER BY id DESC LIMIT 10",(day,),path)
+    if pending:
+        content+='\n\n## 신규 수집 자료 — 중요도 검토 대기\n\n아래는 수집 목록이며, 중요 법률 변화로 선정한 자료가 아닙니다. 법적 의미·점수는 아직 검토 대기입니다.\n\n'
+        content+='\n\n'.join(f"- **{d['title']}** ({d['jurisdiction']}, {d['verification_status']})\n  {d['source_url']}\n  {d['summary'] or '확인되지 않음'}" for d in pending)
     return save_report('daily',day,content,rows,path,data_dir)
 
 def weekly(day=None,path=None,data_dir=None):
