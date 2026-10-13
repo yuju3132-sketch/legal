@@ -1,0 +1,7 @@
+timezone: Asia/Seoul
+daily_threshold: 85
+weekly_threshold: 70
+daily_limit: 5
+http_timeout_seconds: 30
+pdf_max_bytes: 25000000
+# 실행 기준은 scoring/reporting 모듈의 고정 기본값입니다. 변경은 코드와 함께 검토합니다.

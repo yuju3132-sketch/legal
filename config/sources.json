@@ -1,0 +1,444 @@
+[
+  {
+    "id": "fatf-gafi_org",
+    "name": "FATF",
+    "jurisdiction": "Global",
+    "tier": 0,
+    "homepage": "https://fatf-gafi.org/"
+  },
+  {
+    "id": "bis_org",
+    "name": "BIS / BCBS",
+    "jurisdiction": "Global",
+    "tier": 0,
+    "homepage": "https://bis.org/",
+    "feed_url": "https://www.bis.org/doclist/all_news.rss",
+    "enabled": true
+  },
+  {
+    "id": "fsb_org",
+    "name": "FSB",
+    "jurisdiction": "Global",
+    "tier": 0,
+    "homepage": "https://fsb.org/",
+    "feed_url": "https://www.fsb.org/feed/",
+    "enabled": true
+  },
+  {
+    "id": "iosco_org",
+    "name": "IOSCO",
+    "jurisdiction": "Global",
+    "tier": 0,
+    "homepage": "https://iosco.org/"
+  },
+  {
+    "id": "un_org",
+    "name": "United Nations",
+    "jurisdiction": "Global",
+    "tier": 0,
+    "homepage": "https://un.org/"
+  },
+  {
+    "id": "wolfsberg-group_org",
+    "name": "Wolfsberg Group",
+    "jurisdiction": "Global",
+    "tier": 0,
+    "homepage": "https://wolfsberg-group.org/"
+  },
+  {
+    "id": "oecd_org",
+    "name": "OECD",
+    "jurisdiction": "Global",
+    "tier": 0,
+    "homepage": "https://oecd.org/"
+  },
+  {
+    "id": "imf_org",
+    "name": "IMF",
+    "jurisdiction": "Global",
+    "tier": 0,
+    "homepage": "https://imf.org/"
+  },
+  {
+    "id": "scourt_go_kr",
+    "name": "대한민국 대법원",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://scourt.go.kr/"
+  },
+  {
+    "id": "law_go_kr",
+    "name": "국가법령정보센터",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://law.go.kr/"
+  },
+  {
+    "id": "assembly_go_kr",
+    "name": "국회",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://assembly.go.kr/"
+  },
+  {
+    "id": "fsc_go_kr",
+    "name": "FSC",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://fsc.go.kr/"
+  },
+  {
+    "id": "fss_or_kr",
+    "name": "FSS",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://fss.or.kr/"
+  },
+  {
+    "id": "kofiu_go_kr",
+    "name": "KoFIU",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://kofiu.go.kr/"
+  },
+  {
+    "id": "dart_fss_or_kr",
+    "name": "DART",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://dart.fss.or.kr/"
+  },
+  {
+    "id": "krx_co_kr",
+    "name": "KRX",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://krx.co.kr/"
+  },
+  {
+    "id": "bok_or_kr",
+    "name": "한국은행",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://bok.or.kr/"
+  },
+  {
+    "id": "kdic_or_kr",
+    "name": "예금보험공사",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://kdic.or.kr/"
+  },
+  {
+    "id": "moef_go_kr",
+    "name": "기획재정부",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://moef.go.kr/"
+  },
+  {
+    "id": "mofa_go_kr",
+    "name": "외교부",
+    "jurisdiction": "Korea",
+    "tier": 1,
+    "homepage": "https://mofa.go.kr/"
+  },
+  {
+    "id": "kci_go_kr",
+    "name": "KCI",
+    "jurisdiction": "Korea",
+    "tier": 3,
+    "homepage": "https://kci.go.kr/"
+  },
+  {
+    "id": "riss_kr",
+    "name": "RISS",
+    "jurisdiction": "Korea",
+    "tier": 3,
+    "homepage": "https://riss.kr/"
+  },
+  {
+    "id": "supremecourt_gov",
+    "name": "US Supreme Court",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://supremecourt.gov/"
+  },
+  {
+    "id": "congress_gov",
+    "name": "Congress",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://congress.gov/"
+  },
+  {
+    "id": "federalregister_gov",
+    "name": "Federal Register",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://federalregister.gov/"
+  },
+  {
+    "id": "ecfr_gov",
+    "name": "eCFR",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://ecfr.gov/"
+  },
+  {
+    "id": "sec_gov",
+    "name": "SEC",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://sec.gov/"
+  },
+  {
+    "id": "federalreserve_gov",
+    "name": "Federal Reserve",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://federalreserve.gov/",
+    "feed_url": "https://www.federalreserve.gov/feeds/press_all.xml",
+    "enabled": true
+  },
+  {
+    "id": "occ_treas_gov",
+    "name": "OCC",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://occ.treas.gov/"
+  },
+  {
+    "id": "fdic_gov",
+    "name": "FDIC",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://fdic.gov/"
+  },
+  {
+    "id": "ffiec_gov",
+    "name": "FFIEC",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://ffiec.gov/"
+  },
+  {
+    "id": "fincen_gov",
+    "name": "FinCEN",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://fincen.gov/"
+  },
+  {
+    "id": "ofac_treasury_gov",
+    "name": "OFAC",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://ofac.treasury.gov/"
+  },
+  {
+    "id": "justice_gov",
+    "name": "DOJ",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://justice.gov/"
+  },
+  {
+    "id": "cftc_gov",
+    "name": "CFTC",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://cftc.gov/"
+  },
+  {
+    "id": "consumerfinance_gov",
+    "name": "CFPB",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://consumerfinance.gov/"
+  },
+  {
+    "id": "finra_org",
+    "name": "FINRA",
+    "jurisdiction": "United States",
+    "tier": 1,
+    "homepage": "https://finra.org/"
+  },
+  {
+    "id": "ssrn_com",
+    "name": "SSRN",
+    "jurisdiction": "United States",
+    "tier": 3,
+    "homepage": "https://ssrn.com/"
+  },
+  {
+    "id": "supremecourt_uk",
+    "name": "UK Supreme Court",
+    "jurisdiction": "United Kingdom",
+    "tier": 1,
+    "homepage": "https://supremecourt.uk/"
+  },
+  {
+    "id": "legislation_gov_uk",
+    "name": "UK Legislation",
+    "jurisdiction": "United Kingdom",
+    "tier": 1,
+    "homepage": "https://legislation.gov.uk/"
+  },
+  {
+    "id": "parliament_uk",
+    "name": "UK Parliament",
+    "jurisdiction": "United Kingdom",
+    "tier": 1,
+    "homepage": "https://parliament.uk/"
+  },
+  {
+    "id": "fca_org_uk",
+    "name": "FCA",
+    "jurisdiction": "United Kingdom",
+    "tier": 1,
+    "homepage": "https://fca.org.uk/",
+    "feed_url": "https://www.fca.org.uk/news/rss.xml",
+    "enabled": true
+  },
+  {
+    "id": "handbook_fca_org_uk",
+    "name": "FCA Handbook",
+    "jurisdiction": "United Kingdom",
+    "tier": 1,
+    "homepage": "https://handbook.fca.org.uk/"
+  },
+  {
+    "id": "bankofengland_co_uk",
+    "name": "PRA / Bank of England",
+    "jurisdiction": "United Kingdom",
+    "tier": 1,
+    "homepage": "https://bankofengland.co.uk/"
+  },
+  {
+    "id": "gov_uk",
+    "name": "HM Treasury / OFSI / UK Sanctions List",
+    "jurisdiction": "United Kingdom",
+    "tier": 1,
+    "homepage": "https://gov.uk/"
+  },
+  {
+    "id": "nationalcrimeagency_gov_uk",
+    "name": "NCA",
+    "jurisdiction": "United Kingdom",
+    "tier": 1,
+    "homepage": "https://nationalcrimeagency.gov.uk/"
+  },
+  {
+    "id": "frc_org_uk",
+    "name": "FRC",
+    "jurisdiction": "United Kingdom",
+    "tier": 1,
+    "homepage": "https://frc.org.uk/"
+  },
+  {
+    "id": "ox_ac_uk",
+    "name": "Oxford",
+    "jurisdiction": "United Kingdom",
+    "tier": 3,
+    "homepage": "https://ox.ac.uk/"
+  },
+  {
+    "id": "cam_ac_uk",
+    "name": "Cambridge",
+    "jurisdiction": "United Kingdom",
+    "tier": 3,
+    "homepage": "https://cam.ac.uk/"
+  },
+  {
+    "id": "lse_ac_uk",
+    "name": "LSE",
+    "jurisdiction": "United Kingdom",
+    "tier": 3,
+    "homepage": "https://lse.ac.uk/"
+  },
+  {
+    "id": "ucl_ac_uk",
+    "name": "UCL",
+    "jurisdiction": "United Kingdom",
+    "tier": 3,
+    "homepage": "https://ucl.ac.uk/"
+  },
+  {
+    "id": "courts_go_jp",
+    "name": "最高裁判所",
+    "jurisdiction": "Japan",
+    "tier": 1,
+    "homepage": "https://courts.go.jp/"
+  },
+  {
+    "id": "e-gov_go_jp",
+    "name": "e-Gov",
+    "jurisdiction": "Japan",
+    "tier": 1,
+    "homepage": "https://e-gov.go.jp/"
+  },
+  {
+    "id": "japaneselawtranslation_go_jp",
+    "name": "Japanese Law Translation",
+    "jurisdiction": "Japan",
+    "tier": 1,
+    "homepage": "https://japaneselawtranslation.go.jp/"
+  },
+  {
+    "id": "moj_go_jp",
+    "name": "法務省",
+    "jurisdiction": "Japan",
+    "tier": 1,
+    "homepage": "https://moj.go.jp/"
+  },
+  {
+    "id": "fsa_go_jp",
+    "name": "Japan FSA / SESC",
+    "jurisdiction": "Japan",
+    "tier": 1,
+    "homepage": "https://fsa.go.jp/"
+  },
+  {
+    "id": "boj_or_jp",
+    "name": "日本銀行",
+    "jurisdiction": "Japan",
+    "tier": 1,
+    "homepage": "https://boj.or.jp/"
+  },
+  {
+    "id": "mof_go_jp",
+    "name": "財務省",
+    "jurisdiction": "Japan",
+    "tier": 1,
+    "homepage": "https://mof.go.jp/"
+  },
+  {
+    "id": "meti_go_jp",
+    "name": "経済産業省",
+    "jurisdiction": "Japan",
+    "tier": 1,
+    "homepage": "https://meti.go.jp/"
+  },
+  {
+    "id": "jpx_co_jp",
+    "name": "JPX",
+    "jurisdiction": "Japan",
+    "tier": 1,
+    "homepage": "https://jpx.co.jp/"
+  },
+  {
+    "id": "jstage_jst_go_jp",
+    "name": "J-STAGE",
+    "jurisdiction": "Japan",
+    "tier": 3,
+    "homepage": "https://jstage.jst.go.jp/"
+  },
+  {
+    "id": "cir_nii_ac_jp",
+    "name": "CiNii Research",
+    "jurisdiction": "Japan",
+    "tier": 3,
+    "homepage": "https://cir.nii.ac.jp/"
+  }
+]

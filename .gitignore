@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+.pytest_cache/
+database/*.db*
+papers/**/*.pdf
+reports/**/*.md
+logs/*
+backups/
+.streamlit/secrets.toml
